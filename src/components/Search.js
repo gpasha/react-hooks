@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { AlertContext } from '../context/alert/AlertContext'
+import { GithubContext } from '../context/github/GithubContext'
 
 export const Search = () => {
 
@@ -7,13 +8,15 @@ export const Search = () => {
 
     const { show } = useContext(AlertContext)
 
+    const { search } = useContext(GithubContext)
+
     const submitHandler = e => {
         if (e.key !== 'Enter') {
             return
         }
 
         if (value.trim()) {
-            console.log('value: ', value)
+            search(value.trim())
         } else {
             show("Please enter a user data!", 'warning')
         }
