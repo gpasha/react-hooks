@@ -1,13 +1,21 @@
-import React, { useContext } from 'react'
-import { AlertContext } from '../context/AlertContext'
+import React, { useState, useContext } from 'react'
+import { AlertContext } from '../context/alert/AlertContext'
 
 export const Search = () => {
 
+    const [value, setValue] = useState('')
+
     const { show } = useContext(AlertContext)
 
-    const testHandler = e => {
-        if (e.key === 'Enter') {
-            show("Test text for Alert ...", 'warning')
+    const submitHandler = e => {
+        if (e.key !== 'Enter') {
+            return
+        }
+
+        if (value.trim()) {
+            console.log('value: ', value)
+        } else {
+            show("Please enter a user data!", 'warning')
         }
     }
 
@@ -16,7 +24,9 @@ export const Search = () => {
             <input type="text"
                    className="form-control"
                    placeholder="Enter a user name"
-                   onKeyPress={testHandler} />
+                   value={value}
+                   onChange={e => setValue(e.target.value)}
+                   onKeyPress={submitHandler} />
         </div>
     )
 }

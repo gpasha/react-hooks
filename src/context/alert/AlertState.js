@@ -2,7 +2,7 @@ import React from 'react'
 import { AlertContext } from './AlertContext'
 import { useReducer } from 'react'
 import { AlertReducer } from './AlertReducer'
-import { ALERT_SHOW, ALERT_HIDE } from './ActionTypes'
+import { ALERT_SHOW, ALERT_HIDE } from '../ActionTypes'
 
 export const AlertState = ({ children }) => {
 
