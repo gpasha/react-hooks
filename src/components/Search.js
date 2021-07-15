@@ -6,9 +6,9 @@ export const Search = () => {
 
     const [value, setValue] = useState('')
 
-    const { show } = useContext(AlertContext)
+    const { show, hide } = useContext(AlertContext)
 
-    const { search } = useContext(GithubContext)
+    const { search, clearUser } = useContext(GithubContext)
 
     const submitHandler = e => {
         if (e.key !== 'Enter') {
@@ -17,8 +17,10 @@ export const Search = () => {
 
         if (value.trim()) {
             search(value.trim())
+            hide()
         } else {
             show("Please enter a user data!", 'warning')
+            clearUser()
         }
     }
 
